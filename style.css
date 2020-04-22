@@ -15,18 +15,22 @@ body {
 }
 
 h1 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color: #FFF;
+    background-color: #808080;
+    width: 100%;
+    opacity: 0.6;
+
 }
 
 div form {
-    margin-top: 50px;
+    margin-top: 40px;
     opacity: 0.7;
     display: flex;
-    flex-shrink: 2 1;
     flex-direction: row;
-    width: 320px;
+    width: 400px;
     height: 100px;
-
 }
 
 div form .inputarea {
@@ -36,11 +40,14 @@ div form .inputarea {
 
 div form .inputarea #input {
     resize: none;
+    padding: 5px;
+    border-radius: 7px;
 }
 
 div form .inputarea #date {
     margin-top: 2px;
     padding: 10px;
+    border-radius: 5px;
 }
 
 div form .buttons {
@@ -51,14 +58,24 @@ div form .buttons {
 }
 
 div form .buttons .button {
-    width: 100px;
+    width: 130px;
     height: 80px;
-    border: 2px solid #000;
+    border: 1px solid #000;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
 
+div form .buttons .button:first-child {
+    background-color: #15a715;
 }
 
 div form .buttons .button:not(:first-child){
-    margin-top: 2px;
+    background-color: #e22323;
+}
+
+div form .buttons .button:not(:first-child){
+    margin-top: 3px;
 }
