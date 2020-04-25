@@ -40,13 +40,14 @@ div form .inputarea {
 
 div form .inputarea #input {
     resize: none;
+    width: 300px;
     padding: 5px;
     border-radius: 7px;
 }
 
 div form .inputarea #date {
-    margin-top: 2px;
     padding: 10px;
+    margin-top: 2px;
     border-radius: 5px;
 }
 
