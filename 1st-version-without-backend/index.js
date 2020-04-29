@@ -12,6 +12,7 @@ function handleSubmit(){
         toDo.date = date
         toDo.text = text
         addTask()
+
         }else if(text !== "" && date === ""){
 
                 toDo.date = "There's no due date"
@@ -23,6 +24,7 @@ function handleSubmit(){
                 alert("The task field should not be blank.")
 
             }
+
     event.preventDefault()
     tasksAlert()
 
