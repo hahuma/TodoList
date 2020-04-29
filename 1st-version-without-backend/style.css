@@ -5,6 +5,7 @@
     padding: 0;
     margin: 0;
     outline: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -28,7 +29,6 @@ h1 {
 
 div form {
     margin-top: 40px;
-    opacity: 0.7;
     display: flex;
     flex-direction: row;
     width: 400px;
@@ -37,6 +37,7 @@ div form {
 
 div form .inputarea {
     display: flex;
+    opacity: 0.9;
     flex-direction: column;
 }
 
@@ -69,6 +70,12 @@ div form .buttons .button {
     font-size: 16px;
     font-weight: bold;
     color: #FFF;
+    transition: filter 0.3s;
+}
+
+
+div form .buttons .button:hover{
+    filter: brightness(90%);
 }
 
 div form .buttons .button:first-child {
@@ -77,22 +84,21 @@ div form .buttons .button:first-child {
 
 div form .buttons .button:not(:first-child){
     background-color: #e22323;
-}
-
-div form .buttons .button:not(:first-child){
     margin-top: 3px;
 }
+
 
 body #tasks-container {
     margin-top: 50px;
     min-width: 75%;
+    max-width: 90%;
     display: grid;
     grid-gap: 5px;
     grid-template-columns: repeat(4, 25%);
 
 }
 
-.task {
+body #tasks-container div {
     background-color: #FFF;
     color: #000;    
     border-radius: 8px;
@@ -101,13 +107,16 @@ body #tasks-container {
     
 }
 
-body #tasks-container .task p { 
+body #tasks-container div h1{
+    opacity: 1;
+}
+
+body #tasks-container div p { 
     font-size: 20px;
-    font-weight: 400;
+    font-weight: bold;
     word-wrap: break-word;
 }
 
-body #tasks-container .task h2 {
-    font-weight: 400;
-    margin-top: 100%;
+body #tasks-container div p:last-child {
+    text-align-last: center;
 }

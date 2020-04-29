@@ -1,4 +1,5 @@
 const tasksContainer = document.querySelector('#tasks-container')
+const date = new Date()
 const toDo = {}
 
 function handleSubmit(){
@@ -11,7 +12,6 @@ function handleSubmit(){
         toDo.date = date
         toDo.text = text
         addTask()
-
         }else if(text !== "" && date === ""){
 
                 toDo.date = "There's no due date"
@@ -24,20 +24,70 @@ function handleSubmit(){
 
             }
     event.preventDefault()
+    tasksAlert()
 
 }
 function addTask(){
     let taskbox = document.createElement('div') 
     let textArea = document.createElement('p')
-    let dateArea = document.createElement('h2') 
+    let dateArea = document.createElement('p')
+    let headerText = document.createElement('h1') 
+    let headerDate = document.createElement('h1') 
     let br = '<br>'
-    taskbox.classList.add('task')
-    taskbox.id = `${toDo.date}`
+
+    let className = toDo.date.replace(/[" "]/g, "-")
+    taskbox.classList.add("id" + className)
     
-    textArea.innerHTML = `Task: ${br}${br}${toDo.text}`
-    dateArea.innerHTML = `Due to: ${br}${br}${toDo.date}`
+    headerText.innerHTML = 'Task:'
+    textArea.innerHTML = `${br + toDo.text + br + br}`
+    headerDate.innerHTML = 'Due to:'
+    dateArea.innerHTML = `${br + toDo.date}`
 
     tasksContainer.appendChild(taskbox)
+    taskbox.appendChild(headerText)
     taskbox.appendChild(textArea)
+    taskbox.appendChild(headerDate)
     taskbox.appendChild(dateArea)
 }
+
+
+
+function tasksAlert(){
+    let todayDate = 
+        `${date.getFullYear() 
+        + '-' 
+        + ("0" +(date.getMonth() + 1).toString()) 
+        + '-' 
+        + date.getDate()}`
+    let nearDate = 
+        `${date.getFullYear() 
+        + '-' 
+        + ("0" +(date.getMonth() + 1).toString()) 
+        + '-' 
+        + (date.getDate() + 1)}`
+
+    changeBackgroundColor(todayDate).then(changeBackgroundColor(nearDate))
+
+    async function changeBackgroundColor(dateInformation){
+
+        let dateInformationClass = ".id" + dateInformation
+        let taskExpireDate = document.querySelectorAll(dateInformationClass)
+        let color
+
+
+        if(dateInformation === todayDate){
+            color = "red"
+        }
+
+        if(dateInformation === nearDate){
+            color = "yellow"
+        }
+
+
+        for(let i = 0; i < taskExpireDate.length; i++){
+            taskExpireDate[i].style.backgroundColor = color
+        }
+    }
+    
+}
+
