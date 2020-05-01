@@ -1,0 +1,13 @@
+{
+  "name": "todo-list-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "http://www.github.com/hahuma/TodoList",
+  "author": "Petterson",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10"
+  }
+}
