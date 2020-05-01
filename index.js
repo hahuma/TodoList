@@ -59,13 +59,15 @@ function tasksAlert(){
         `${date.getFullYear() 
         + '-' 
         + ("0" +(date.getMonth() + 1).toString()) 
-        + '-' 
+        + '-'
+        + '0'
         + date.getDate()}`
     let nearDate = 
         `${date.getFullYear() 
         + '-' 
         + ("0" +(date.getMonth() + 1).toString()) 
-        + '-' 
+        + '-'
+        + '0'
         + (date.getDate() + 1)}`
 
     changeBackgroundColor(todayDate).then(changeBackgroundColor(nearDate))
