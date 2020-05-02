@@ -8,6 +8,12 @@ const TaskSchema = new mongoose.Schema({
     taskDate: {
         type: String,
         required: false,
+    },
+    user: {
+        type:Object,
+        ref: 'User',
+        required: true,
+        default: "",
     }
 })
 

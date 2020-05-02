@@ -1,15 +1,18 @@
 const express = require('express')
-const app = require('../app')
 
-const Task = require('../models/taskSchema')
+const Task = require('../models/task')
+const User = require('../models/user')
 
 module.exports = {
-    async post(req, res){
+    async store(req, res){
         const { task, date } = req.headers;
+        const { login } = req.params;
 
-        const tasks = await Task.create({
+        let user = await User.findOne({ login })
+        let tasks = await Task.create({
             taskText: task,
             taskDate: date,
+            user: user.login
         })
 
         return res.json(tasks)
@@ -17,11 +20,11 @@ module.exports = {
     },
 
     async index(req, res){
+        const { login } = req.params
+        const tasks = await Task.find({user:login})
 
-        const Tasks = await Task.find()
 
-        //Create a functionality to only create tasks on the logged user
+        res.json(tasks)
 
-        res.json(Tasks)
     }
 }

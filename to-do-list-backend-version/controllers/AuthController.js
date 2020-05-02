@@ -1,19 +1,19 @@
 const express = require('express')
-const app = require('../app')
-const User = require('../models/userSchema')
+const User = require('../models/user')
 
 module.exports =  {
-    async post(req, res){
+    async store(req, res){
 
         const { login, password } = req.body;
-        const allUsers = await User.findOne({ login: login })
+        let user = await User.findOne({ login: login })
 
-        if(!allUsers){
+        if(!user){
 
-            const user = await User.create({
+            user = await User.create({
                 login: login,
                 password: password,
             })
+
 
             return res.json(user)
 
