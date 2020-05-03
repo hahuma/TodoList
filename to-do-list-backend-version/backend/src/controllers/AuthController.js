@@ -14,7 +14,7 @@ module.exports =  {
                 password: password,
             })
 
-
+            res.header('login', login)
             return res.json(user)
 
         }else{

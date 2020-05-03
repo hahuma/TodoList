@@ -10,10 +10,9 @@ const TaskSchema = new mongoose.Schema({
         required: false,
     },
     user: {
-        type:Object,
+        type: String,
         ref: 'User',
         required: true,
-        default: "",
     }
 })
 
