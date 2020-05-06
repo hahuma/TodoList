@@ -13,8 +13,7 @@ module.exports =  {
                 login: login,
                 password: password,
             })
-
-            res.header('login', login)
+            console.log('user created')
             return res.json(user)
 
         }else{

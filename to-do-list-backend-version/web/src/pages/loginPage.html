@@ -9,17 +9,19 @@
 </head>
 <body background="../assets/background.jpg">
     <div class="form-container">
-        <form action="../pages/loginPage.html">
+        <form onsubmit="handleLogin()">
             <div class="logo-container">
                 <img src="../assets/pencil-logo.png" alt="pencil-logo">
                 <span>Make your own task lists</span>
             </div>
             <label for="task">Login</label>
-            <input required type="text" name="login" placeholder="Your login">
+            <input required type="text" name="login" id="login" placeholder="Your login">
             <label for="date">Password</label>
-            <input required type="password" name="password" placeholder="Your password">
+            <input required type="password" name="password" id="password" placeholder="Your password">
             <button type="submit">Log in</button>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="../main.js"></script>
 </body>
 </html>

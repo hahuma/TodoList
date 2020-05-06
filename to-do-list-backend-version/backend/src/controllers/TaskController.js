@@ -6,13 +6,13 @@ const User = require('../models/user')
 module.exports = {
     async store(req, res){
         const { taskText, taskDate } = req.query;
-        const { login } = req.header;
+        const user_id = localStorage.getItem('user_id');
 
-        let user = await User.findOne({ login })
+        let user = await User.findOne({ user_id })
         let task = await Task.create({
             taskText,
             taskDate,
-            user: user.login
+            user_id
         })
 
         return res.json(task)
@@ -20,8 +20,8 @@ module.exports = {
     },
 
     async index(req, res){
-        const { login } = req.header
-        const tasks = await Task.find({user:login})
+        const user_id = localStorage.getItem('user_id');
+        const tasks = await Task.find({user_id})
 
 
         res.json(tasks)
