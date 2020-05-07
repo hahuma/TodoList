@@ -1,5 +1,7 @@
 'use strict'
 
+
+
 // axios is already declared globally
 const api = axios.create({
     baseURL: 'http://localhost:3000'
@@ -9,13 +11,13 @@ const api = axios.create({
 async function handleLogin(){
     event.preventDefault();
     try {
-        let login = document.getElementById('login').value
+        let email = document.getElementById('email').value
         let password = document.getElementById('password').value
 
 
         await api.get('/',{
             params: {
-                login,
+                email,
                 password
             }}).then(
             function(response){
@@ -33,16 +35,18 @@ async function handleLogin(){
 async function handleRegister(){
     event.preventDefault()
     try {
-        let login = document.getElementById('login').value
+        let username = document.getElementById('username').value
+        let email = document.getElementById('email').value
         let password = document.getElementById('password').value
 
         await api.post('/', {
-            login,
+            username,
+            email,
             password,
         }).then(function(response){
             const _id = response.data._id
             localStorage.setItem('user_id', _id)
-            history.replaceState('profilePage', 'profile page', `${_id}`)
+            history.replaceState('profilePage', 'profile page', `${_id}/profile`)
         })
 
     } catch (err) {
@@ -54,23 +58,12 @@ async function handleRegister(){
 
 function goToRegisterNewUser(){
     history.replaceState('registerPage','register page', 'register')
-    renderNewState()
     registerPageRenderer()
 }
 
 function goToLoginUser(){
     history.replaceState('loginPage','login page', 'login')
-    renderNewState()
-
-}
-
-
-
-function renderNewState(){
-
-    const mainDiv = document.querySelector('#mainDiv');
-    mainDiv.innerHTML = '';
-    //let actualState = history.state;
+    loginPageRenderer()
 
 }
 
@@ -78,18 +71,19 @@ function renderNewState(){
 function registerPageRenderer(){
 
     const mainDiv = document.getElementById('mainDiv')
-    const style = document.querySelector('#css')
-    style.setAttribute('href', '../register/registerStyle.css')
+    const style = document.querySelector('#additionalCss')
+    mainDiv.innerHTML = ''
+    style.setAttribute('href', './pages/register/registerStyle.css')
 
     let form = document.createElement('form')
     let div = document.createElement('div')
     let logoSpan = document.createElement('span')
     let img = document.createElement('img')
-    let nameInput = document.createElement('input')
-    let loginInput = document.createElement('input')
+    let usernameInput = document.createElement('input')
+    let emailInput = document.createElement('input')
     let passwordInput = document.createElement('input')
-    let nameLabel = document.createElement('label')
-    let loginLabel = document.createElement('label')
+    let usernameLabel = document.createElement('label')
+    let emailLabel = document.createElement('label')
     let passwordLabel = document.createElement('label')
     let button = document.createElement('button')
     let p = document.createElement('p')
@@ -97,29 +91,29 @@ function registerPageRenderer(){
 
     // events and classes definition
     div.classList.toggle('logo-container')
-    form.onsubmit = handleRegister()
-    redirectSpan.onclick = goToLoginUser()
+    form.setAttribute('onsubmit', 'handleRegister()')
+    redirectSpan.setAttribute('onclick', 'goToLoginUser()')
 
     // logo image and span text
-    img.src = '../../assets/pencil-logo.png'
+    img.src = './assets/pencil-logo.png'
     img.setAttribute('alt', 'pencil-logo')
     logoSpan.innerText = "Make your own task lists"
 
 
-    // user name area
-    nameLabel.innerText = 'Your name:'
-    nameInput.id = 'name'
-    nameInput.setAttribute('name', 'name')
-    nameInput.setAttribute('type', 'text')
-    nameInput.placeholder = 'Put your name'
+    // username area
+    usernameLabel.innerText = 'Your username:'
+    usernameInput.id = 'username'
+    usernameInput.setAttribute('name', 'username')
+    usernameInput.setAttribute('type', 'text')
+    usernameInput.placeholder = 'create a username'
 
 
-    // user login area
-    loginLabel.innerText = 'Your login:'
-    loginInput.id = 'login'
-    loginInput.setAttribute('name', 'login')
-    loginInput.setAttribute('type', 'email')
-    loginInput.placeholder = 'Put your login'
+    // user email area
+    emailLabel.innerText = 'Your email:'
+    emailInput.id = 'email'
+    emailInput.setAttribute('name', 'email')
+    emailInput.setAttribute('type', 'email')
+    emailInput.placeholder = 'Put your email'
 
 
     // user password area
@@ -140,10 +134,10 @@ function registerPageRenderer(){
     div.appendChild(img)
     div.appendChild(logoSpan)
     form.appendChild(div)
-    form.appendChild(nameLabel)
-    form.appendChild(nameInput)
-    form.appendChild(loginLabel)
-    form.appendChild(loginInput)
+    form.appendChild(usernameLabel)
+    form.appendChild(usernameInput)
+    form.appendChild(emailLabel)
+    form.appendChild(emailInput)
     form.appendChild(passwordLabel)
     form.appendChild(passwordInput)
     form.appendChild(button)
@@ -152,3 +146,74 @@ function registerPageRenderer(){
 
 
 }
+
+function loginPageRenderer(){
+
+    const mainDiv = document.getElementById('mainDiv')
+    const style = document.querySelector('#additionalCss')
+    mainDiv.innerHTML = ''
+    style.setAttribute('href', './pages/login/styles.css')
+
+    let form = document.createElement('form')
+    let div = document.createElement('div')
+    let logoSpan = document.createElement('span')
+    let img = document.createElement('img')
+    let passwordInput = document.createElement('input')
+    let emailLabel = document.createElement('label')
+    let emailInput = document.createElement('input')
+    let passwordLabel = document.createElement('label')
+    let button = document.createElement('button')
+    let p = document.createElement('p')
+    let redirectSpan = document.createElement('span')
+
+    // events and classes definition
+    div.classList.toggle('logo-container')
+    form.setAttribute('onsubmit', 'handleLogin()')
+    redirectSpan.setAttribute('onclick', 'goToRegisterNewUser()')
+
+    // logo image and span text
+    img.src = './assets/pencil-logo.png'
+    img.setAttribute('alt', 'pencil-logo')
+    logoSpan.innerText = "Make your own task lists"
+
+
+
+    // user login area
+    emailLabel.innerText = 'Email:'
+    emailInput.id = 'email'
+    emailInput.setAttribute('name', 'email')
+    emailInput.setAttribute('type', 'email')
+    emailInput.placeholder = 'Put your email'
+
+
+    // user password area
+    passwordLabel.innerText = 'Password:'
+    passwordInput.id = 'password'
+    passwordInput.setAttribute('name', 'password')
+    passwordInput.setAttribute('type', 'password')
+    passwordInput.placeholder = 'Put your password'
+
+
+    // button and login span
+    button.innerText = 'Sign in'
+    button.setAttribute('type', 'submit')
+    p.innerText = `Don't have an account yet?`
+    redirectSpan.innerText = 'Sign In here'
+
+    //putting the elements on the screen
+    div.appendChild(img)
+    div.appendChild(logoSpan)
+    form.appendChild(div)
+    form.appendChild(emailLabel)
+    form.appendChild(emailInput)
+    form.appendChild(passwordLabel)
+    form.appendChild(passwordInput)
+    form.appendChild(button)
+    form.appendChild(p)
+    p.appendChild(redirectSpan)
+    mainDiv.appendChild(form)
+
+
+}
+
+goToLoginUser()

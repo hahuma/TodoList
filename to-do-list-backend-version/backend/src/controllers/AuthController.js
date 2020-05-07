@@ -4,14 +4,15 @@ const User = require('../models/user')
 module.exports =  {
     async store(req, res){
 
-        const { login, password } = req.body;
-        let user = await User.findOne({ login: login })
+        const { username, email, password } = req.body;
+        let user = await User.findOne({ email: email })
 
         if(!user){
 
             user = await User.create({
-                login: login,
-                password: password,
+                username,
+                email,
+                password,
             })
             return res.json(user)
 
@@ -22,9 +23,8 @@ module.exports =  {
     },
 
     async index(req, res){
-        const { login, password } = req.query;
-        let user = await User.findOne({login, password})
-        console.log(req.query)
+        const { email, password } = req.query;
+        let user = await User.findOne({email, password})
         if(user){
 
             return res.json(user)
