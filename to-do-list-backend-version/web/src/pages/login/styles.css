@@ -7,7 +7,7 @@
 body{
     margin: 0px;
 }
-.form-container {
+.container {
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -33,17 +33,17 @@ body{
     height: 80px;
 }
 
-.form-container form {
+.container form {
     display: flex;
     width: 300px;
-    height: 320px;
+    height: 350px;
     flex-direction: column;
     background-color: #FFF;
     border-radius: 8px;
     padding: 20px 15px 0;
 }
 
-.form-container form label {
+.container form label {
     margin: 5px 0;
     font-size: 16px;
     font-weight: bold;
@@ -51,7 +51,7 @@ body{
 
 }
 
-.form-container form input {
+.container form input {
     border: 0;
     font-size: 16px;
     padding: 10px;
@@ -60,7 +60,7 @@ body{
     border-bottom: 2px solid #000;
 }
 
-.form-container form button {
+.container form button {
     margin-top: 15px;
     border-radius: 8px;
     font-size: 24px;
@@ -69,6 +69,16 @@ body{
     padding: 15px;
     background-color: #34c7c7;
 
+}
+
+.container form p{
+    margin-top: 15px;
+}
+
+.container form p span{
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline blue solid;
 }
 
 ::-webkit-input-placeholder {

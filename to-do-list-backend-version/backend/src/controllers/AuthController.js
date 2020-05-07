@@ -13,12 +13,26 @@ module.exports =  {
                 login: login,
                 password: password,
             })
-            console.log('user created')
             return res.json(user)
 
         }else{
 
             res.json('Error: User already exists!')
+        }
+    },
+
+    async index(req, res){
+        const { login, password } = req.query;
+        let user = await User.findOne({login, password})
+        console.log(req.query)
+        if(user){
+
+            return res.json(user)
+
+        }else{
+
+            return res.json("Error: This user doesn't exist")
+
         }
     }
 }

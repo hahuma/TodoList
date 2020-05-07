@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" id="css" href="styles.css">
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
 </head>
-<body background="../assets/background.jpg">
-    <div class="form-container">
+<body background="../../assets/background.jpg">
+    <div class="container" id="mainDiv">
         <form onsubmit="handleLogin()">
             <div class="logo-container">
-                <img src="../assets/pencil-logo.png" alt="pencil-logo">
+                <img src="../../assets/pencil-logo.png" alt="pencil-logo">
                 <span>Make your own task lists</span>
             </div>
             <label for="task">Login</label>
@@ -19,9 +19,12 @@
             <label for="date">Password</label>
             <input required type="password" name="password" id="password" placeholder="Your password">
             <button type="submit">Log in</button>
+            <p>Don't have an account?
+                <span onclick="goToRegisterNewUser()">Register here</span>
+            </p>
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
-    <script src="../main.js"></script>
+    <script src="../../main.js"></script>
 </body>
 </html>
