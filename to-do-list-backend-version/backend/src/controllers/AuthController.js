@@ -5,7 +5,7 @@ module.exports =  {
     async store(req, res){
 
         const { username, email, password } = req.body;
-        let user = await User.findOne({ email: email })
+        let user = await User.findOne({ email })
 
         if(!user){
 
@@ -18,7 +18,9 @@ module.exports =  {
 
         }else{
 
-            res.json('Error: User already exists!')
+            return res.status(400).json({error: 'This user already exists!'})
+
+
         }
     },
 
@@ -31,7 +33,7 @@ module.exports =  {
 
         }else{
 
-            return res.json("Error: This user doesn't exist")
+            return res.status(400).json({error: 'E-mail/Password are incorrect'})
 
         }
     }

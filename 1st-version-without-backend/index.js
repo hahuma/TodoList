@@ -30,16 +30,16 @@ function handleSubmit(){
 
 }
 function addTask(){
-    let taskbox = document.createElement('div') 
+    let taskbox = document.createElement('div')
     let textArea = document.createElement('p')
     let dateArea = document.createElement('p')
-    let headerText = document.createElement('h1') 
-    let headerDate = document.createElement('h1') 
+    let headerText = document.createElement('h1')
+    let headerDate = document.createElement('h1')
     let br = '<br>'
 
     let className = toDo.date.replace(/[" "]/g, "-")
     taskbox.classList.add("id" + className)
-    
+
     headerText.innerHTML = 'Task:'
     textArea.innerHTML = `${br + toDo.text + br + br}`
     headerDate.innerHTML = 'Due to:'
