@@ -13,7 +13,7 @@ async function handleSubmitNewTask(){
     let taskDate = document.getElementById('taskDate').value || "There's no due date"
     let user_id = localStorage.getItem('user_id')
 
-    await api.post('/:_id/profile/',{
+    await api.post('/profile/:_id',{
         taskText,
         taskDate,
         user_id
@@ -29,7 +29,7 @@ async function handleSubmitNewTask(){
 async function renderAllTasks(){
     let user_id = localStorage.getItem('user_id')
 
-    const { data } = await api.get('/:id/profile', {
+    const { data } = await api.get('/profile/:_id', {
         params:{
             user_id
     }})

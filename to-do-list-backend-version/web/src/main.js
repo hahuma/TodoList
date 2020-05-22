@@ -9,23 +9,24 @@ import registerPageRenderer from './pages/register/index.js'
 
 function goToUserProfile( _id ){
     pageCleaner('profile')
-    history.replaceState('profilePage', 'profile page', `${_id}/profile`)
+    history.replaceState('profilePage', 'profile page', `profile/${_id}`)
     dashboardPageRenderer()
 
 }
 
 function goToRegisterNewUser(){
     pageCleaner('register')
-    history.replaceState('registerPage','register page', 'register')
+    history.replaceState('registerPage', 'register page', 'register')
     registerPageRenderer()
 }
 
 function goToLoginUser(){
+    history.replaceState('loginPage', 'login page', 'login')
     pageCleaner('login')
-    history.replaceState('loginPage','login page', 'login')
     loginPageRenderer()
 
 }
+
 
 goToLoginUser()
 

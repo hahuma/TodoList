@@ -1,4 +1,5 @@
 import DOM_HANDLER from '../../utils/DOM_HANDLER.js'
+import logOut from '../../utils/logOut.js'
 import { handleSubmitNewTask, renderAllTasks } from '../../services/api.js'
 
 
@@ -19,21 +20,24 @@ function dashboardPageRenderer(){
     let inputTaskDate = DOM_HANDLER.tagCreator('input')
     let submitButton = DOM_HANDLER.tagCreator('button')
     let clearButton = DOM_HANDLER.tagCreator('button')
+    let logOutButton = DOM_HANDLER.tagCreator('button')
+    let logOutIcon = DOM_HANDLER.tagCreator('a')
 
     // events and classes definition
+    DOM_HANDLER.classCreator(h1, 'welcomeHeader')
     DOM_HANDLER.classCreator(formDiv, 'formDiv')
     DOM_HANDLER.classCreator(inputsDiv, 'inputArea')
     DOM_HANDLER.classCreator(buttonsDiv, 'buttons')
+    DOM_HANDLER.classCreator(logOutButton, 'logOut')
     DOM_HANDLER.classCreator(createNewTaskTitle, 'newTaskTitle')
 
     taskForm.addEventListener('submit', handleSubmitNewTask, false)
+    logOutButton.addEventListener('click', logOut, false)
     tasksContainer.setAttribute('id', 'tasks-container')
 
 
-    //header
+    //header and logOut button
     h1.innerText = `Welcome ${username} , if you want to organize your tasks we are here to help you!`
-    DOM_HANDLER.classCreator(h1, 'welcomeHeader')
-
 
     // inputs area
     createNewTaskTitle.innerText = 'Create a New Task'
@@ -46,11 +50,13 @@ function dashboardPageRenderer(){
     DOM_HANDLER.setButtonProperties(clearButton, 'reset', 'Clear', 'button')
 
     //adding elements on screen
+
+    DOM_HANDLER.appendElement(logOutButton, [  logOutIcon ])
     DOM_HANDLER.appendElement(inputsDiv, [  textarea, inputTaskDate ])
     DOM_HANDLER.appendElement(buttonsDiv, [  submitButton, clearButton ])
     DOM_HANDLER.appendElement(taskForm, [  createNewTaskTitle, inputsDiv, buttonsDiv ])
     DOM_HANDLER.appendElement(formDiv, [  taskForm ])
-    DOM_HANDLER.appendElement(mainDiv, [  formDiv, tasksContainer ])
+    DOM_HANDLER.appendElement(mainDiv, [  formDiv, tasksContainer, logOutButton ])
     body.insertBefore(h1, body.childNodes[0])
 
     renderAllTasks()

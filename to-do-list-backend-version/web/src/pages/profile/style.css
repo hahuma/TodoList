@@ -35,6 +35,30 @@
     justify-content: center;
 }
 
+.logOut {
+    width: 40px;
+    height: 40px;
+    top: 120px;
+    left: 90%;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #f7494993;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logOut a {
+    width: 20px;
+    height: 20px;
+    content: url('../../assets/logout.svg')
+}
+
+.logOut:hover {
+
+    background-color: #f74949ce;
+
+}
+
 #taskText {
     resize: none;
     width: 300px;
