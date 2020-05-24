@@ -1,9 +1,9 @@
 import { goToUserProfile } from '../main.js'
 import listAllTasks from '../utils/listAlltasks.js'
-require('dotenv').config()
+
 // axios is already declared globally
 const api = axios.create({
-    baseURL: process.env.APP_URL
+    baseURL: 'https://mytodohelper.herokuapp.com'
 })
 
 async function handleSubmitNewTask(){
