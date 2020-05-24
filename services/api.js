@@ -3,7 +3,7 @@ import listAllTasks from '../utils/listAlltasks.js'
 
 // axios is already declared globally
 const api = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: process.env.APP_URL
 })
 
 async function handleSubmitNewTask(){
