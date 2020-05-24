@@ -3,7 +3,7 @@ import listAllTasks from '../utils/listAlltasks.js'
 
 // axios is already declared globally
 const api = axios.create({
-    baseURL: 'https://thetodo-list.herokuapp.com/'
+    baseURL: 'https://thetodo-list.herokuapp.com'
 })
 
 async function handleSubmitNewTask(){
